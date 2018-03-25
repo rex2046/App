@@ -26,12 +26,12 @@ public class NgAllocation {
 	
 	public List<SuiteNg> allocate() {
 		long recTime = System.currentTimeMillis();
-		log.info("线程启动，分配id：" + MutiThreadRunner.tlc.get());;
+		log.info("线程启动，分配id：{}", MutiThreadRunner.tlc.get());;
 
 		
 		List<SuiteNg> stList = doAllocate();
 
-		log.info("线程ID:" + Thread.currentThread().getId() + " 处理耗时："
+		log.info("线程ID:{} 处理耗时：{}",Thread.currentThread().getId(),
 				+ (System.currentTimeMillis() - recTime) / 1000 + "s");
 
 		return stList;
