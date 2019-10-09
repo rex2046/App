@@ -21,7 +21,6 @@ public class MutiThreadRunner  implements Runnable {
 		setRunningResource(DefaultResourceLoader.load(), threadCount);
 	}
 	
-	@Override
 	public void run() {
 		MutiThreadRunner.tlc.set(nextId.getAndIncrement()); // 分派线程序号
 		new NgAllocation().allocate(); // 执行分配
@@ -40,7 +39,7 @@ public class MutiThreadRunner  implements Runnable {
 		}
 		Collections.sort(ngcntList);
 		
-		int count =0;
+		int count;
 		for (NgCounter ngCounter:ngcntList) {
 			System.out.println("positon:"+ngCounter.getPos()+" count:"+ngCounter.getCount());
 			
@@ -55,7 +54,7 @@ public class MutiThreadRunner  implements Runnable {
 			throw new RuntimeException("无法找到适合多线程匹配");
 		}
 		String ngpos = runrsList.get(0).getPosition();
-		StringBuffer sb = new StringBuffer("|");
+		StringBuilder sb = new StringBuilder("|");
 		for (int i = runrsList.size() - 1; i >= threadCount - 1 && i >= 0; i--) {
 			sb.append(runrsList.remove(i).getSeqNo()+"|");
 		}
@@ -77,7 +76,6 @@ public class MutiThreadRunner  implements Runnable {
 		private int pos;
 		private int count;
 		
-		@Override
 		public int compareTo(NgCounter ng) {
 			if (this.count >= ng.getCount()) {
 				return 1;
@@ -85,19 +83,19 @@ public class MutiThreadRunner  implements Runnable {
 			return -1;
 		}
 
-		public int getPos() {
+		private int getPos() {
 			return pos;
 		}
 
-		public void setPos(int pos) {
+        private void setPos(int pos) {
 			this.pos = pos;
 		}
 
-		public int getCount() {
+        private int getCount() {
 			return count;
 		}
 
-		public void setCount(int count) {
+        private void setCount(int count) {
 			this.count = count;
 		}
 	}
