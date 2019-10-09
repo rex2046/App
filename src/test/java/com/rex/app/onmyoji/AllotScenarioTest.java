@@ -9,6 +9,7 @@ public class AllotScenarioTest {
 
 	@Test
 	public void testRun() {
+		// 启动场景类进行测试
 		new AllotScenario().run();
 		Assert.assertEquals(true, true);
 	}
